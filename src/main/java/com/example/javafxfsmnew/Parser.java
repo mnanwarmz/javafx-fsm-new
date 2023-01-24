@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Parser {
+
+	public Map<String, List<String>> rules = new HashMap<>();
+	public List<String> nonTerminals = new ArrayList<>();
+	public List<String> terminals = new ArrayList<>();
 	// Function to parse the input string and extract the grammar rules
 	public static Map<String, Object> parse(String input) {
 		Map<String, List<String>> rules = new HashMap<>();
@@ -57,7 +61,6 @@ public class Parser {
 			}
 			rules.get(lhs).addAll(Arrays.asList(symbols));
 		}
-
 		return new HashMap<String, Object>() {
 			{
 				put("rules", rules);
