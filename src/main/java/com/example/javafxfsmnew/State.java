@@ -1,6 +1,7 @@
 package com.example.javafxfsmnew;
 
 import java.util.HashMap;
+import java.util.List;
 
 class State {
 	public boolean isStart;
@@ -33,6 +34,12 @@ class State {
 	public void addTransition(String symbol, State nextState) {
 		transitions.put(symbol, nextState);
 	}
+
+//	Get transition
+	public State getTransition(String symbol) {
+		return transitions.get(symbol);
+	}
+
 
 	public boolean isFinal() {
 		return isFinal;

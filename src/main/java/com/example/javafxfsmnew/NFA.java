@@ -9,7 +9,7 @@ class NFA {
 	private State initialState;
 	private State startState;
 	private Map<String,State> states = new HashMap<>();
-	private List<String> terminals;
+	public List<String> terminals;
 	private Map<State, Map<String, List<State>>> transitions;
 
 	public NFA(List<String> nonTerminals, List<String> terminals, Map<String, List<String>> rules) {
@@ -18,6 +18,7 @@ class NFA {
 			states.put(nonTerminal, new State(nonTerminal));
 		}
 
+		this.terminals = terminals;
 		// Create the start state
 		startState = states.get(nonTerminals.get(0));
 		startState.setStart(true);
@@ -27,18 +28,21 @@ class NFA {
 			String lhs = entry.getKey();
 			State currentState = states.get(lhs);
 			List<String> rhs = entry.getValue();
-
 			for (String symbol : rhs) {
-				if (nonTerminals.contains(symbol)) {
-					State nextState = states.get(symbol);
-					currentState.addTransition(nextState.getName(),nextState);
-				} else {
-					State nextState = new State(symbol);
-					currentState.addTransition(nextState.getName(),nextState);
+				String[] symbols = symbol.split(" ");
+				for (String sym : symbols) {
+					if (nonTerminals.contains(sym)) {
+						State nextState = states.get(sym);
+						currentState.addTransition(sym, nextState);
+					} else {
+						State nextState = new State(sym);
+						currentState.addTransition(sym, nextState);
+					}
 				}
 			}
 		}
 	}
+
 
 
 	public void setInitialState(State initialState) {

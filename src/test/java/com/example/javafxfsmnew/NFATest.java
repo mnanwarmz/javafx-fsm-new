@@ -29,18 +29,19 @@ class NFATest {
 		assertEquals("A", startState.getName());
 
 //		 Test that the transitions are correct
-//		State stateA = nfa.getState("A");
-//		State stateB = nfa.getState("B");
-//		State stateC = nfa.getState("C");
+		State stateA = nfa.getState("A");
+		State stateB = nfa.getState("B");
+		State stateC = nfa.getState("C");
+//		System.out.println(nfa.getStates());
 //		System.out.println(stateA.transitions);
 //		System.out.println(stateB.transitions);
 //		System.out.println(stateC.transitions);
 //		System.exit(0);
-//		 assertTrue(stateA.hasTransition("1B"));
-//		 assertTrue(stateA.hasTransition("0C"));
-//		 assertTrue(stateB.hasTransition("ε"));
-//		 assertTrue(stateC.hasTransition("B"));
-//		 assertTrue(stateC.hasTransition("1A"));
+		 assertTrue(stateA.hasTransition("1B"));
+		 assertTrue(stateA.hasTransition("0C"));
+		 assertTrue(stateB.hasTransition("ε"));
+		 assertTrue(stateC.hasTransition("B"));
+		 assertTrue(stateC.hasTransition("1A"));
 	}
 
 }
